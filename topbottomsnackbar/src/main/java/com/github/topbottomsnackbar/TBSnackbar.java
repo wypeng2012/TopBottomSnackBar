@@ -38,7 +38,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.R;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.SwipeDismissBehavior;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
@@ -66,21 +65,7 @@ import java.lang.annotation.RetentionPolicy;
 
 import static com.github.topbottomsnackbar.AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR;
 
-/**
- * Snackbars provide lightweight feedback about an operation. They show a brief message at the
- * bottom of the screen on mobile and lower left on larger devices. Snackbars appear above all other
- * elements on screen and only one can be displayed at a time.
- * <p>
- * They automatically disappear after a timeout or after user interaction elsewhere on the screen,
- * particularly after interactions that summon a new surface or activity. Snackbars can be swiped
- * off screen.
- * <p>
- * Snackbars can contain an action which is set via
- * {@link #setAction(CharSequence, View.OnClickListener)}.
- * <p>
- * To be notified when a snackbar has been shown or dismissed, you can provide a {@link Callback}
- * via {@link #setCallback(Callback)}.</p>
- */
+
 public final class TBSnackbar {
 
     /**
@@ -111,10 +96,6 @@ public final class TBSnackbar {
         public static final int DISMISS_EVENT_CONSECUTIVE = 4;
 
 
-
-        /**
-         * @hide
-         */
 
         @IntDef({DISMISS_EVENT_SWIPE, DISMISS_EVENT_ACTION, DISMISS_EVENT_TIMEOUT,
                 DISMISS_EVENT_MANUAL, DISMISS_EVENT_CONSECUTIVE})
@@ -148,9 +129,6 @@ public final class TBSnackbar {
         }
     }
 
-    /**
-     * @hide
-     */
 
     @IntDef({LENGTH_INDEFINITE, LENGTH_SHORT, LENGTH_LONG})
     @IntRange(from = 1)
@@ -305,8 +283,8 @@ public final class TBSnackbar {
     /**
      * Overrides the max width of this snackbar's layout. This is typically not necessary; the snackbar
      * width will be according to Google's Material guidelines. Specifically, the max width will be
-     * <p>
-     * To allow the snackbar to have a width equal to the parent view, set a value <= 0.
+     *
+     * To allow the snackbar to have a width equal to the parent view, set a value
      *
      * @param maxWidth the max width in pixels
      * @return this TSnackbar
@@ -363,15 +341,7 @@ public final class TBSnackbar {
 
     /**
      * Make a TBSnackbar to display a message
-     * <p>
-     * <p>TBSnackbar will try and find a parent view to hold TBSnackbar's view from the value given
-     * to {@code view}. TBSnackbar will walk up the view tree trying to find a suitable parent,
-     * which is defined as a {@link CoordinatorLayout} or the window decor's content view,
-     * whichever comes first.
-     * <p>
-     * <p>Having a {@link CoordinatorLayout} in your view hierarchy allows TBSnackbar to enable
-     * certain features, such as swipe-to-dismiss and automatically moving of widgets like
-     * {@link FloatingActionButton}.
+     *
      *
      * @param view     The view to find a parent from.
      * @param text     The text to show.  Can be formatted text.
@@ -391,15 +361,9 @@ public final class TBSnackbar {
 
     /**
      * Make a TBSnackbar to display a message.
-     * <p>
-     * <p>TBSnackbar will try and find a parent view to hold TBSnackbar's view from the value given
-     * to {@code view}. TBSnackbar will walk up the view tree trying to find a suitable parent,
-     * which is defined as a {@link CoordinatorLayout} or the window decor's content view,
-     * whichever comes first.
-     * <p>
-     * <p>Having a {@link CoordinatorLayout} in your view hierarchy allows TBSnackbar to enable
+     *Having a {@link CoordinatorLayout} in your view hierarchy allows TBSnackbar to enable
      * certain features, such as swipe-to-dismiss and automatically moving of widgets like
-     * {@link FloatingActionButton}.
+     *
      *
      * @param view     The view to find a parent from.
      * @param resId    The resource id of the string resource to use. Can be formatted text.
@@ -600,6 +564,7 @@ public final class TBSnackbar {
     /**
      * Returns whether this {@link TBSnackbar} is currently being shown, or is queued to be
      * shown next.
+     * @return
      */
     public boolean isShownOrQueued() {
         return TBSnackbarManager.getInstance().isCurrentOrNext(mManagerCallback);
@@ -867,9 +832,7 @@ public final class TBSnackbar {
         return !mAccessibilityManager.isEnabled();
     }
 
-    /**
-     * @hide
-     */
+
 
     public static class SnackbarLayout extends LinearLayout {
         private TextView mMessageView;
