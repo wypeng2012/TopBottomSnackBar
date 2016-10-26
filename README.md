@@ -11,6 +11,7 @@ A library show snack bar from top or bottom(Android),you can use it like google'
  
 
  - **use it**
+ 
 1.TBSnackbar.STYLE_SHOW_TOP
   
         /* if you use STYLE_SHOW_TOP and your activity has toolbar or
@@ -78,7 +79,7 @@ A library show snack bar from top or bottom(Android),you can use it like google'
 
  - **License**
 
-        Copyright 2015 AndroidAdvance.com
+        Copyright 2016 52it.party
         
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
