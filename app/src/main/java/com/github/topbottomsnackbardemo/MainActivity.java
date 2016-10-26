@@ -8,7 +8,6 @@ import android.view.View;
 import com.github.topbottomsnackbar.TBSnackbar;
 
 import static com.github.topbottomsnackbar.TBSnackbar.STYLE_SHOW_BOTTOM;
-import static com.github.topbottomsnackbar.TBSnackbar.make;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void showtop(View view) {
         // if you use STYLE_SHOW_TOP and your activity has toolbar or actionbar ,you should use "findViewById(android.R.id.content)",must not use "getWindow().getDecorView()"
-        make(findViewById(android.R.id.content), "This is a top snack!", TBSnackbar.LENGTH_SHORT, TBSnackbar.STYLE_SHOW_TOP).show();
+        TBSnackbar.make(findViewById(android.R.id.content), "This is a top snack!", TBSnackbar.LENGTH_SHORT, TBSnackbar.STYLE_SHOW_TOP).show();
     }
 
     public void showbottom(View view) {
         // if you use STYLE_SHOW_BOTTOM  ,you can use any view.But if you use CoordinatorLayout,you must use CoordinatorLayout.
-        make(findViewById(android.R.id.content), "This is a bottom snack!", TBSnackbar.LENGTH_SHORT, STYLE_SHOW_BOTTOM).show();
+        TBSnackbar.make(findViewById(android.R.id.content), "This is a bottom snack!", TBSnackbar.LENGTH_SHORT, TBSnackbar.STYLE_SHOW_BOTTOM).show();
     }
 
     public void showfitsystemwindow(View view) {
