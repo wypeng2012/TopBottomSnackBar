@@ -2,9 +2,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.github.topbottomsnackbar">
 
-    <uses-sdk
-        android:minSdkVersion="9"
-        tools:overrideLibrary="android.support.transition" />
+    <uses-sdk tools:overrideLibrary="android.support.transition" />
 
     <application/>
 

@@ -30,19 +30,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
-import android.support.design.R;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.SwipeDismissBehavior;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
-import android.support.v4.view.WindowInsetsCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -59,6 +46,20 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorListenerAdapter;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.behavior.SwipeDismissBehavior;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -331,7 +332,7 @@ public final class TBSnackbar {
     private static Bitmap getBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
-        } else if (drawable instanceof VectorDrawable) {
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && drawable instanceof VectorDrawable) {
             return getBitmap((VectorDrawable) drawable);
         } else {
             throw new IllegalArgumentException("unsupported drawable type");
@@ -883,18 +884,20 @@ public final class TBSnackbar {
                     ViewCompat.IMPORTANT_FOR_ACCESSIBILITY_YES);
 
             // Make sure that we fit system windows and have a listener to apply any insets
-            ViewCompat.setFitsSystemWindows(this, true);
-            ViewCompat.setOnApplyWindowInsetsListener(this,
-                    new android.support.v4.view.OnApplyWindowInsetsListener() {
-                        @Override
-                        public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
-                            // Copy over the bottom inset as padding so that we're displayed above the
-                            // navigation bar
-                            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(),
-                                    v.getPaddingRight(), insets.getSystemWindowInsetBottom());
-                            return insets;
-                        }
-                    });
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                this.setFitsSystemWindows(true);
+            }
+            ViewCompat.setOnApplyWindowInsetsListener(this, new androidx.core.view.OnApplyWindowInsetsListener() {
+                @Override
+                public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
+                    // Copy over the bottom inset as padding so that we're displayed above the
+                    // navigation bar
+                    v.setPadding(v.getPaddingLeft(), v.getPaddingTop(),
+                            v.getPaddingRight(), insets.getSystemWindowInsetBottom());
+                    return insets;
+                }
+            });
+
         }
 
         @Override

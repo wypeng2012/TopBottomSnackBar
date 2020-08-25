@@ -1,22 +1,29 @@
-﻿# TopBottomSnackBar
+# TopBottomSnackBar
 
 A library show snack bar from top or bottom(Android),you can use it like google's SnackBar.
 
 ![此处输入图片的描述][1]
 
 
-  [1]: https://github.com/wypeng2012/TopBottomSnackBar/blob/master/screenpic/ScreenGif.gif
-  
-[ ![Download](https://api.bintray.com/packages/loveit/maven/topbottomsnackbar/images/download.svg?version=1.1.0) ](https://bintray.com/loveit/maven/topbottomsnackbar/1.1.0/link)
+[1]: https://github.com/wypeng2012/TopBottomSnackBar/blob/master/screenpic/ScreenGif.gif
 
+[ ![Download](https://api.bintray.com/packages/loveit/maven/topbottomsnackbar/images/download.svg) ](https://bintray.com/loveit/maven/topbottomsnackbar/_latestVersion)
 
-#support api >= 14
- 
+#support api >= 9
+
+support androidx
+
+> ```groovy
+> android.useAndroidX=true
+> # Automatically convert third-party libraries to use AndroidX
+> android.enableJetifier=true
+> ```
+
 
  - **use it**
- 
+
 1.TBSnackbar.STYLE_SHOW_TOP
-  
+
         /* if you use STYLE_SHOW_TOP and your activity has toolbar or
             actionbar ,you should use "findViewById(android.R.id.content)",must
             not use "getWindow().getDecorView()"*/
@@ -30,15 +37,15 @@ A library show snack bar from top or bottom(Android),you can use it like google'
         TBSnackbar.make(findViewById(android.R.id.content), "This is a bottom snack!", TBSnackbar.LENGTH_SHORT,TBSnackbar.STYLE_SHOW_BOTTOM).show();
 
  3.TBSnackbar.STYLE_SHOW_TOP_FITSYSTEMWINDOW
- 
-    
+
+
         // if you use STYLE_SHOW_TOP_FITSYSTEMWINDOW ,you must use
         //getWindow().getDecorView()  android api >= 19 
         
         TBSnackbar.make(getWindow().getDecorView(),"This is a fitsystemwindow snack!", TBSnackbar.LENGTH_SHORT,TBSnackbar.STYLE_SHOW_TOP_FITSYSTEMWINDOW).show();
 
    4.use it with icon
-   
+
         //setIconLeft(@DrawableRes int drawableRes, float sizeDp) the size is dp,24dp is ok
         //if you want change the icon padding you can use setIconPadding(int padding)
         //setIconRight(@DrawableRes int drawableRes, float sizeDp) you can use 
@@ -60,36 +67,36 @@ A library show snack bar from top or bottom(Android),you can use it like google'
                 snackbar.show();
 
  - **How to dependencies**
- 
+
  1.Maven
 
         <dependency>  
                <groupId>com.github</groupId>  
                <artifactId>topbottomsnackbar</artifactId> 
-               <version>1.1.0</version> 
+               <version>1.1.1</version> 
                <type>pom</type> 
         </dependency>
 
  2.Gradle 
 
-        compile 'com.github:topbottomsnackbar:1.1.0'
+        compile 'com.github:topbottomsnackbar:1.1.1'
 
  3.Ivy
 
-        <dependency org='com.github' name='topbottomsnackbar' rev='1.1.0'>
+        <dependency org='com.github' name='topbottomsnackbar' rev='1.1.1'>
           <artifact name='$AID' ext='pom'></artifact>
         </dependency>
 
  - **License**
 
         Copyright 2017 52it.party
-        
+     
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at
-        
+     
            http://www.apache.org/licenses/LICENSE-2.0
-        
+     
         Unless required by applicable law or agreed to in writing, software
         distributed under the License is distributed on an "AS IS" BASIS,
         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -97,5 +104,5 @@ A library show snack bar from top or bottom(Android),you can use it like google'
         limitations under the License.
 
  
-  
+
   

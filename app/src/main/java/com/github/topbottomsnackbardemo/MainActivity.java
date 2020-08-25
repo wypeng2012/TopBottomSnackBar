@@ -2,12 +2,12 @@ package com.github.topbottomsnackbardemo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.topbottomsnackbar.TBSnackbar;
 
-import static com.github.topbottomsnackbar.TBSnackbar.STYLE_SHOW_BOTTOM;
 
 public class MainActivity extends AppCompatActivity {
 

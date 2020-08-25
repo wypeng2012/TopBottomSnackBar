@@ -20,10 +20,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.lang.ref.WeakReference;
 
 /**
- * Manages {@link android.support.design.widget.Snackbar}s.
+ * Manages {@link com.google.android.material.snackbar.Snackbar}s.
  */
 class TBSnackbarManager {
 
@@ -87,7 +89,7 @@ class TBSnackbarManager {
             }
 
             if (mCurrentSnackbar != null && cancelSnackbarLocked(mCurrentSnackbar,
-                    android.support.design.widget.Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE)) {
+                    Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE)) {
                 // If we currently have a TBSnackbar, try and cancel it and wait in line
                 return;
             } else {
@@ -214,7 +216,7 @@ class TBSnackbarManager {
     }
 
     private void scheduleTimeoutLocked(SnackbarRecord r) {
-        if (r.duration == android.support.design.widget.Snackbar.LENGTH_INDEFINITE) {
+        if (r.duration == Snackbar.LENGTH_INDEFINITE) {
             // If we're set to indefinite, we don't want to set a timeout
             return;
         }
@@ -222,7 +224,7 @@ class TBSnackbarManager {
         int durationMs = LONG_DURATION_MS;
         if (r.duration > 0) {
             durationMs = r.duration;
-        } else if (r.duration == android.support.design.widget.Snackbar.LENGTH_SHORT) {
+        } else if (r.duration == Snackbar.LENGTH_SHORT) {
             durationMs = SHORT_DURATION_MS;
         }
         mHandler.removeCallbacksAndMessages(r);
@@ -232,7 +234,7 @@ class TBSnackbarManager {
     void handleTimeout(SnackbarRecord record) {
         synchronized (mLock) {
             if (mCurrentSnackbar == record || mNextSnackbar == record) {
-                cancelSnackbarLocked(record, android.support.design.widget.Snackbar.Callback.DISMISS_EVENT_TIMEOUT);
+                cancelSnackbarLocked(record, Snackbar.Callback.DISMISS_EVENT_TIMEOUT);
             }
         }
     }
